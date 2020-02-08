@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define pb push_back
+#define vi vector<int>
+#define pii pair<int,int>
+#define mii map<int,int>
+#define int long long int
+
+int32_t main()
+{
+	#ifndef ONLINE_JUDGE
+	     freopen("input.txt",  "r",  stdin);
+	     freopen("output.txt", "w", stdout);
+	#endif
+	int t;
+	cin>>t;
+	while(t--)
+	{
+			string s;
+			cin>>s;
+			int a[26],b[26],k;
+			memset(a,0,sizeof(a));
+			memset(b,0,sizeof(b));
+			for (int i = 0; i < s.size(); ++i)
+			{
+				 a[s[i]-'a']++;
+			}
+			int j=0,mn=1e9;
+			for (int i = 0; i < s.size(); ++i)
+			{
+				b[s[i]-'a']++;
+				while(b[s[j]-'a']>1)
+				{
+					b[s[j]-'a']--;
+					j++;
+				}
+				for (k = 0; k < 26; ++k)
+				{
+					if(a[k]!=0&&b[k]==0)
+						break;
+				}
+				if(k==26) mn=min(mn,i-j+1);
+			}
+				cout<<mn<<endl;
+	}
+
+	return 0;
+}
