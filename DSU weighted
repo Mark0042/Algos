@@ -1,0 +1,27 @@
+int parent[100000];
+int members[100000];
+void createSet(int n) 
+{
+    for (int i = 1; i <= n; i++)
+    { parent[i] = i; members[i] = 1; } 
+}
+
+int findSet(int x)
+{
+    if (parent[x] != x) { parent[x] = findSet(parent[x]); } return parent[x];
+}
+
+void unionSets(int x,int y)
+{   
+    x = findSet(x);
+    y = findSet(y);
+    if (x != y)
+    {   
+        if (members[y] > members[x]) { swap(x, y); }
+        parent[y] = x; members[x] += members[y];
+    }
+}
+for (int i = 1; i < n+1; ++i)
+    {
+        parent[i]=findSet(i);
+    }
